@@ -103,3 +103,40 @@ In order to complete this assignment, you must do the following:
 ### Grading
 
 This assignment will be graded via peer assessment.
+
+
+## How to test
+
+1. Clone https://github.com/fissurezone/ProgrammingAssignment2
+2. Source the `cachematrix.R` file from the repo in your R repl
+3. Create a cache matrix: `m <- makeCacheMatrix(matrix(1:4, 2, 2))`
+4. Run twice: `m$getinv()`
+
+The first run of step 4 will generate the inverse matrix for the first time and cache it.
+The second run will not regenerate the inverse matrix. It will simply return the cached data.
+
+Demo:
+```
+> source("ProgrammingAssignment2/cachematrix.R")
+> m <- makeCacheMatrix(matrix(1:4, 2, 2))
+> m$get()
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+> m$getinv()
+NULL
+> cacheSolve(m)
+     [,1] [,2]
+[1,]   -2  1.5
+[2,]    1 -0.5
+> m$getinv()
+     [,1] [,2]
+[1,]   -2  1.5
+[2,]    1 -0.5
+> cacheSolve(m)
+getting cached inverse
+     [,1] [,2]
+[1,]   -2  1.5
+[2,]    1 -0.5
+> 
+```
