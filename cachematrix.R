@@ -1,8 +1,11 @@
-## Put comments here that give an overall description of what your
-## functions do
+# Matrix Inverse Memoisation
+#
+# Use a cached inverse of a matrix to avoid 
+# recalculation of inverse matrix at every 
+# invocation of solve(<matrix>)
 
-## Write a short comment describing this function
-
+# Use wrapper functions around matrix instance 
+# to store it along with its inverse
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
   set <- function(y) {
@@ -16,8 +19,8 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
+# Cache inverse from first invocation and use it 
+# for subsequent invocations
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
   inv <- x$getinv()
@@ -25,7 +28,7 @@ cacheSolve <- function(x, ...) {
     message("getting cached inverse")
     return(inv)
   }
-  inv <- solve(x$get())
+  inv <- solve(x$get(), ...)
   x$setinv(inv)
   inv
 }
